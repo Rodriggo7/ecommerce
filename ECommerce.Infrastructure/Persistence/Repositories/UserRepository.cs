@@ -37,4 +37,24 @@ public class UserRepository : IUserRepository
     {
         return await _context.Users.ToListAsync(ct);
     }
+    public async Task<bool> ExistsAsync(Guid id, CancellationToken ct = default)
+    {
+        return await _context.Users.AnyAsync(u => u.Id == id, ct);
+    }
+
+    public async Task UpdateAsync(User user, CancellationToken ct = default)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync(ct);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken ct = default)
+    {
+        var user = await GetByIdAsync(id, ct);
+        if (user is not null)
+        {
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync(ct);
+        }
+    }
 }
