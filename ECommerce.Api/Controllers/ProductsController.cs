@@ -42,6 +42,7 @@ public class ProductsController : ControllerBase
 
     // POST: api/products
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(CreateProductCommand command)
     {
         var response = await _mediator.Send(command);
@@ -50,6 +51,7 @@ public class ProductsController : ControllerBase
 
     // PUT: api/products/{id}
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(Guid id, UpdateProductCommand command)
     {
         // Validación de consistencia: el ID de la URL debe coincidir con el del cuerpo
@@ -62,6 +64,7 @@ public class ProductsController : ControllerBase
 
     // DELETE: api/products/{id}
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await _mediator.Send(new DeleteProductCommand(id));
