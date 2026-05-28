@@ -26,4 +26,11 @@ public class User
 
         Name = name;
     }
+    public void AssignRole(string role)
+    {
+        if (string.IsNullOrWhiteSpace(role))
+            throw new ArgumentException("El rol no puede estar vacío.");
+            
+        Role = role;
+    }
 }
