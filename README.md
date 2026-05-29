@@ -30,10 +30,10 @@ El sistema está dividido en 4 proyectos que respetan estrictamente la Regla de 
    ```bash
    dotnet tool install --global dotnet-ef
 
-```
 
 3. **Configuración (`appsettings.Development.json`):**
 Antes de ejecutar, asegúrate de contar con la siguiente configuración en tu proyecto API:
+
 ```json
 {
   "ConnectionStrings": {
@@ -82,6 +82,8 @@ dotnet run --project ECommerce.Api
 ## Pruebas de Seguridad y Roles (RBAC)
 
 El sistema cuenta con autorización basada en roles. Los endpoints de modificación (POST, PUT, DELETE de Productos) están restringidos.
+
+> **Nota Arquitectónica:** En un entorno de producción real, la creación de usuarios con privilegios administrativos no se expone en el endpoint público de registro, sino que se maneja mediante *Data Seeding* inicial o paneles internos seguros. Sin embargo, a fines prácticos y para facilitar la evaluación y el testing rápido de este proyecto, se implementó una regla temporal en la Capa de Aplicación.
 
 Para **crear el Administrador inicial** y probar estos endpoints:
 
