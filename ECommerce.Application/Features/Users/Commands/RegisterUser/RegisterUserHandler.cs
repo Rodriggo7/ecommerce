@@ -29,14 +29,14 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, UserDto>
         // 3. Crear entidad de dominio
         var user = new User(request.Email, request.Name, hashedPassword);
 
-        // 4. Persistir
-        await _userRepository.AddAsync(user, cancellationToken);
-
         // Si el email es el maestro, lo ascendemos a Admin automáticamente
         if (request.Email.ToLower() == "admin@ecommerce.com")
         {
             user.AssignRole("Admin");
         }
+
+        // 4. Persistir
+        await _userRepository.AddAsync(user, cancellationToken);
 
         // 5. Retornar DTO seguro
         return new UserDto
