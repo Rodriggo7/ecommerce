@@ -19,6 +19,7 @@ public static class DependencyInjection
         // 2. Registrar los repositorios (SIEMPRE Scoped)
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         services.AddSingleton<IPasswordHasher, PasswordHasher>(); // El hasher puede ser Singleton porque no guarda estado
         services.AddScoped<IJwtProvider, JwtProvider>();

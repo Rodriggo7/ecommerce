@@ -1,3 +1,4 @@
+// OrderItemConfiguration.cs
 namespace ECommerce.Infrastructure.Persistence.Configurations;
 
 using ECommerce.Domain.Entities;
@@ -14,5 +15,7 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
         builder.Property(i => i.Id).ValueGeneratedNever();
 
         builder.Property(i => i.UnitPrice).IsRequired().HasColumnType("decimal(18,2)");
+
+        builder.Ignore(i => i.Subtotal);
     }
 }

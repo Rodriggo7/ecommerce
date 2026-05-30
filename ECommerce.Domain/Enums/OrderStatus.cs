@@ -2,7 +2,8 @@ namespace ECommerce.Domain.Entities;
 
 public enum OrderStatus 
 { 
-    Pending, 
+    Pending,
+    Paid,
     Confirmed, 
     Shipped, 
     Delivered, 
