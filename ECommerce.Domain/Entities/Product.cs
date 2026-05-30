@@ -1,4 +1,5 @@
 namespace ECommerce.Domain.Entities;
+using ECommerce.Domain.Exceptions;
 
 public class Product
 {
@@ -43,7 +44,7 @@ public class Product
     public void ReduceStock(int quantity)
     {
         if (quantity > Stock)
-            throw new InvalidOperationException("Stock insuficiente.");
+            throw new InsufficientStockException($"No hay stock suficiente. Stock actual: {Stock}");
         Stock -= quantity;
     }
     public void UpdateDetails(string name, string description, decimal price, int stock, Guid categoryId)
